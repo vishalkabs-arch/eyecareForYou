@@ -1,0 +1,176 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>eyeCare — Eyeglasses Enrollment</title>
+  <meta name="description" content="Enroll customers for eyeglasses at eyeCare — simple, fast, and secure." />
+  styles.css
+</head>
+<body>
+  <!-- Header / Nav -->
+  <header class="app-header" role="banner">
+    #top
+      <!-- simple glasses logo -->
+      <svg width="34" height="34" viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0%" stop-color="#06b6d4"/>
+            <stop offset="100%" stop-color="#4F46E5"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#g1)" d="M8 34a10 10 0 1 0 20 0h8a10 10 0 1 0 20 0v-6h-4v6a6 6 0 1 1-12 0v-6H24v6a6 6 0 1 1-12 0v-6H8v6z"/>
+      </svg>
+      <span class="brand-title">eyeCare</span>
+    </a>
+    <nav class="header-actions" aria-label="Primary">
+      #enrollEnroll</a>
+      #listCustomers</a>
+      <button id="exportCsvBtn" class="btn btn-secondary">Export CSV</button>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="top">
+    <div class="container hero-inner">
+      <h1>Eyeglasses Customer Enrollment</h1>
+      <p class="muted">Capture customer details in seconds — no backend required. Perfect for pilots, pop‑ups, or in‑store kiosks.</p>
+      <div class="hero-cta">
+        #enrollStart Enrollment</a>
+        #listView Customers</a>
+      </div>
+    </div>
+  </section>
+
+  <main class="container" role="main">
+    <!-- Enrollment -->
+    <section class="card" id="enroll" aria-labelledby="enrollTitle">
+      <h2 id="enrollTitle">Customer Enrollment</h2>
+      <p class="muted">All fields are required.</p>
+
+      <form id="enrollForm" novalidate>
+        <div class="grid-2">
+          <div class="field">
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" required minlength="2" maxlength="60" autocomplete="given-name" />
+            <small class="error" data-for="firstName"></small>
+          </div>
+          <div class="field">
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName" type="text" required minlength="2" maxlength="60" autocomplete="family-name" />
+            <small class="error" data-for="lastName"></small>
+          </div>
+          <div class="field" style="grid-column:1 / -1;">
+            <label for="address">Address</label>
+            <input id="address" name="address" type="text" required minlength="5" maxlength="160" autocomplete="street-address" />
+            <small class="error" data-for="address"></small>
+          </div>
+          <div class="field" style="grid-column:1 / -1;">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required maxlength="120" autocomplete="email" inputmode="email" />
+            <small class="error" data-for="email"></small>
+          </div>
+          <div class="check-wrap" style="grid-column:1 / -1;">
+            <input id="consent" type="checkbox" required />
+            <label for="consent">Customer agrees to be contacted via email regarding their eyeglasses order.</label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Enroll Customer</button>
+          <button class="btn" type="reset" id="resetBtn">Reset</button>
+        </div>
+
+        <p class="legal">
+          Demo only — data is stored locally in your browser (no server). Do not use for PHI/PII beyond this pilot without a proper backend.
+        </p>
+      </form>
+    </section>
+
+    <!-- List/Search/Sort -->
+    <section class="card" id="list" aria-labelledby="listTitle">
+      <div class="list-header">
+        <h2 id="listTitle">Enrolled Customers</h2>
+        <div class="list-controls">
+          <input id="searchInput" type="search" placeholder="Search name or email…" aria-label="Search" />
+          <select id="sortSelect" aria-label="Sort by">
+            <option value="createdAt_desc">Newest</option>
+            <option value="createdAt_asc">Oldest</option>
+            <option value="lastName_asc">Last Name A→Z</option>
+            <option value="lastName_desc">Last Name Z→A</option>
+            <option value="email_asc">Email A→Z</option>
+            <option value="email_desc">Email Z→A</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="table-wrap" role="region" aria-live="polite">
+        <table>
+          <thead>
+            <tr>
+              <th>First</th>
+              <th>Last</th>
+              <th>Address</th>
+              <th>Email</th>
+              <th>Enrolled</th>
+              <th style="width:120px;">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="customersTbody">
+            <!-- filled by JS -->
+          </tbody>
+        </table>
+        <p id="emptyState" class="empty" hidden>No customers yet. Use the form above to add one.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Edit Modal -->
+  <dialog id="editModal" aria-labelledby="editTitle">
+    <form method="dialog" class="modal">
+      <header class="modal-header">
+        <h3 id="editTitle">Edit Customer</h3>
+        <button class="btn btn-icon" value="cancel" aria-label="Close">✕</button>
+      </header>
+      <div class="modal-body">
+        <div class="grid-2">
+          <div class="field">
+            <label for="editFirstName">First Name</label>
+            <input id="editFirstName" type="text" required minlength="2" maxlength="60" />
+            <small class="error" data-for="editFirstName"></small>
+          </div>
+          <div class="field">
+            <label for="editLastName">Last Name</label>
+            <input id="editLastName" type="text" required minlength="2" maxlength="60" />
+            <small class="error" data-for="editLastName"></small>
+          </div>
+          <div class="field" style="grid-column:1 / -1;">
+            <label for="editAddress">Address</label>
+            <input id="editAddress" type="text" required minlength="5" maxlength="160" />
+            <small class="error" data-for="editAddress"></small>
+          </div>
+          <div class="field" style="grid-column:1 / -1;">
+            <label for="editEmail">Email</label>
+            <input id="editEmail" type="email" required maxlength="120" />
+            <small class="error" data-for="editEmail"></small>
+          </div>
+        </div>
+      </div>
+      <footer class="modal-footer">
+        <button class="btn btn-secondary" value="cancel">Cancel</button>
+        <button class="btn btn-primary" id="saveEditBtn" type="button">Save</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true" hidden></div>
+
+  <footer class="app-footer">
+    <span>© <span id="year"></span> eyeCare — Demo app (static)</span>
+  </footer>
+
+  app.js</script>
+</body>
+</html>
