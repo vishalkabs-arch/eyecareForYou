@@ -1,0 +1,100 @@
+
+:root{
+  --bg:#0b1020;
+  --panel:#141a2f;
+  --panel-2:#1a2240;
+  --text:#eef2ff;
+  --muted:#a7b0d8;
+  --border:#232a4a;
+  --accent:#4F46E5;
+  --accent-2:#06b6d4;
+  --danger:#ef4444;
+  --success:#22c55e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif}
+a{color:#93c5fd;text-decoration:none}
+a:hover{text-decoration:underline}
+
+.app-header,.app-footer{
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:14px 18px; background:var(--panel); border-bottom:1px solid var(--border)
+}
+.app-footer{border-top:1px solid var(--border); border-bottom:none; justify-content:center; color:var(--muted)}
+.brand{display:flex; align-items:center; gap:10px}
+.brand-title{font-weight:700}
+.header-actions{display:flex; gap:8px}
+
+.container{max-width:980px;margin:0 auto;padding:18px}
+
+.hero{
+  background: radial-gradient(1200px 400px at 20% -10%, rgba(79,70,229,0.25), transparent),
+              radial-gradient(1200px 400px at 80% -10%, rgba(6,182,212,0.25), transparent);
+  border-bottom:1px solid var(--border);
+}
+.hero-inner{padding:36px 18px 28px}
+.hero h1{margin:0 0 6px 0; font-size:28px}
+.hero-cta{display:flex; gap:10px; margin-top:10px}
+
+.card{
+  background:var(--panel); border:1px solid var(--border); border-radius:12px;
+  padding:16px 16px 10px; margin:16px 0; box-shadow:0 0 0 1px rgba(0,0,0,0.02), 0 6px 24px rgba(0,0,0,0.15)
+}
+.card h2{margin:0 0 6px 0}
+.muted{color:var(--muted)}
+
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+@media (max-width:740px){ .grid-2{grid-template-columns:1fr} }
+
+.field{display:grid; gap:6px}
+label{color:#cbd5ff; font-size:13px}
+input[type="text"], input[type="email"], input[type="search"], select{
+  background:var(--panel-2); color:var(--text); border:1px solid var(--border);
+  padding:10px 12px; border-radius:8px; outline:none;
+}
+input::placeholder{color:#7f8bb9}
+.error{color:#fca5a5; min-height:16px}
+.check-wrap{display:flex; align-items:flex-start; gap:10px; color:#d0d7ff}
+
+.form-actions{display:flex; gap:8px; margin-top:8px}
+
+.btn{
+  background:transparent; color:var(--text); border:1px solid var(--border);
+  padding:8px 12px; border-radius:8px; cursor:pointer
+}
+.btn:hover{border-color:#3b4374}
+.btn-primary{background:linear-gradient(90deg,var(--accent-2),var(--accent)); border:none}
+.btn-secondary{background:#273061; border:none}
+.btn-icon{background:transparent; border:none; color:var(--muted); font-size:18px}
+
+.list-header{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px}
+.list-controls{display:flex; gap:8px}
+
+.table-wrap{overflow:auto; border:1px solid var(--border); border-radius:10px; background:var(--panel-2)}
+table{width:100%; border-collapse:collapse}
+thead th{
+  text-align:left; position:sticky; top:0; z-index:1;
+  background:#1c2751; color:#dbe3ff; font-weight:600; letter-spacing:.2px;
+  padding:10px 12px; border-bottom:1px solid var(--border)
+}
+tbody td{padding:10px 12px; border-bottom:1px solid var(--border); color:#e9edff}
+tbody tr:hover{background:#121a3b}
+
+.actions{display:flex; gap:6px}
+.badge{display:inline-flex; align-items:center; gap:6px; padding:3px 8px; border-radius:999px; background:#203066; color:#c7d2fe; border:1px solid #2b3d7a}
+.empty{padding:14px; color:var(--muted)}
+
+dialog::backdrop{background:rgba(0,0,0,0.6)}
+dialog{border:none; border-radius:12px; padding:0; width:min(640px,96%)}
+.modal{background:var(--panel); border:1px solid var(--border); border-radius:12px}
+.modal-header,.modal-footer{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--border)}
+.modal-footer{border-top:1px solid var(--border); border-bottom:none}
+.modal-body{padding:14px; display:grid; gap:10px}
+
+.toast{
+  position: fixed; right: 18px; bottom: 18px;
+  background: #152345; border:1px solid #273066; color:#e6ecff;
+  padding:10px 12px; border-radius:10px; box-shadow:0 8px 24px rgba(0,0,0,.35)
+}
+
+.legal{color:var(--muted); font-size:12px; margin-top:8px}
